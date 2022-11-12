@@ -8,7 +8,8 @@ import 'package:responsive_app/const/stat_row.dart';
 import 'package:responsive_app/const/text_style.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  final dynamic data;
+  const DetailsScreen({super.key, this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +38,8 @@ class DetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 width: double.infinity,
                 child: orientation == Orientation.portrait
-                    ? portraitConatiner()
-                    : landscapeContainer(),
+                    ? portraitConatiner(data)
+                    : landscapeContainer(data),
               ),
             ),
             Expanded(
@@ -71,8 +72,7 @@ class DetailsScreen extends StatelessWidget {
                                 normalText(
                                     color: Colors.black,
                                     size: 16,
-                                    text:
-                                        "It can be  seen napping in the jungle having a seed on its back."),
+                                    text: data["xdescription"]),
                                 const SizedBox(height: 10),
                                 Align(
                                   alignment: Alignment.center,
@@ -100,7 +100,7 @@ class DetailsScreen extends StatelessWidget {
                                                 headingText(
                                                     color: Colors.grey,
                                                     size: 16,
-                                                    text: "15ft"),
+                                                    text: data["height"]),
                                               ],
                                             ),
                                             Column(
@@ -113,7 +113,7 @@ class DetailsScreen extends StatelessWidget {
                                                 headingText(
                                                     color: Colors.grey,
                                                     size: 16,
-                                                    text: "15lbs"),
+                                                    text: data["weight"]),
                                               ],
                                             ),
                                           ],
