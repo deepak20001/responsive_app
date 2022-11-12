@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_app/const/colors.dart';
+import 'package:responsive_app/const/landscape_container.dart';
 import 'package:responsive_app/const/poke_type_container..dart';
+import 'package:responsive_app/const/portrait_container.dart';
 import 'package:responsive_app/const/row_styling.dart';
 import 'package:responsive_app/const/stat_row.dart';
 import 'package:responsive_app/const/text_style.dart';
@@ -11,6 +13,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var orientation = MediaQuery.of(context).orientation;
 //-----------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------
     return DefaultTabController(
@@ -33,47 +36,9 @@ class DetailsScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    headingText(
-                        color: Colors.white, size: 36, text: "Bulbasaur"),
-                    Row(
-                      children: [
-                        typeContainer(
-                          color: Colors.white,
-                          size: 16,
-                          text: "Grass",
-                        ),
-                        const SizedBox(width: 6),
-                        typeContainer(
-                          color: Colors.white,
-                          size: 16,
-                          text: "Grass",
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 50),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          Image.asset(
-                            "assets/pokeball.png",
-                            width: 200,
-                            color: Colors.white.withOpacity(0.5),
-                          ),
-                          Image.asset(
-                            "assets/img1.png",
-                            width: 180,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                child: orientation == Orientation.portrait
+                    ? portraitConatiner()
+                    : landscapeContainer(),
               ),
             ),
             Expanded(
@@ -98,74 +63,76 @@ class DetailsScreen extends StatelessWidget {
                     Expanded(
                       child: TabBarView(
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 10),
-                              normalText(
-                                  color: Colors.black,
-                                  size: 16,
-                                  text:
-                                      "It can be  seen napping in the jungle having a seed on its back."),
-                              const SizedBox(height: 10),
-                              Align(
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: width -
-                                      100, // this give us screenwidth-50%
-                                  child: Card(
-                                    color: lightGrey,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              headingText(
-                                                  color: Colors.grey,
-                                                  size: 16,
-                                                  text: "Height"),
-                                              const SizedBox(height: 6),
-                                              headingText(
-                                                  color: Colors.grey,
-                                                  size: 16,
-                                                  text: "15ft"),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              headingText(
-                                                  color: Colors.grey,
-                                                  size: 16,
-                                                  text: "Weight"),
-                                              const SizedBox(height: 6),
-                                              headingText(
-                                                  color: Colors.grey,
-                                                  size: 16,
-                                                  text: "15lbs"),
-                                            ],
-                                          ),
-                                        ],
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 10),
+                                normalText(
+                                    color: Colors.black,
+                                    size: 16,
+                                    text:
+                                        "It can be  seen napping in the jungle having a seed on its back."),
+                                const SizedBox(height: 10),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    width: width -
+                                        100, // this give us screenwidth-50%
+                                    child: Card(
+                                      color: lightGrey,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                headingText(
+                                                    color: Colors.grey,
+                                                    size: 16,
+                                                    text: "Height"),
+                                                const SizedBox(height: 6),
+                                                headingText(
+                                                    color: Colors.grey,
+                                                    size: 16,
+                                                    text: "15ft"),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                headingText(
+                                                    color: Colors.grey,
+                                                    size: 16,
+                                                    text: "Weight"),
+                                                const SizedBox(height: 6),
+                                                headingText(
+                                                    color: Colors.grey,
+                                                    size: 16,
+                                                    text: "15lbs"),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 15),
-                              headingText(
-                                  color: Colors.black,
-                                  size: 16,
-                                  text: "Breeding"),
-                              const SizedBox(height: 10),
-                              rowStyling("Gender", "Male"),
-                              rowStyling("Egg Cycle", "Grass, Monster"),
-                              rowStyling("Evolution", "Grass, Monster"),
-                            ],
+                                const SizedBox(height: 15),
+                                headingText(
+                                    color: Colors.black,
+                                    size: 16,
+                                    text: "Breeding"),
+                                const SizedBox(height: 10),
+                                rowStyling("Gender", "Male"),
+                                rowStyling("Egg Cycle", "Grass, Monster"),
+                                rowStyling("Evolution", "Grass, Monster"),
+                              ],
+                            ),
                           ),
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12),

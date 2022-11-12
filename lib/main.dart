@@ -25,6 +25,8 @@ class Demo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -44,8 +46,12 @@ class Demo extends StatelessWidget {
                   //-------------------------------------
                   shrinkWrap: true,
                   itemCount: 10,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: width < 600
+                        ? 2
+                        : width < 1100
+                            ? 4
+                            : 6,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
                   ),
