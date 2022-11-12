@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../const/poke_type_container..dart';
 import '../const/text_style.dart';
 
-Widget portraitConatiner() {
+Widget portraitConatiner(data) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
-      headingText(color: Colors.white, size: 36, text: "Bulbasaur"),
+      headingText(color: Colors.white, size: 36, text: data["name"]),
       Row(
         children: [
           typeContainer(
@@ -34,8 +34,8 @@ Widget portraitConatiner() {
               width: 200,
               color: Colors.white.withOpacity(0.5),
             ),
-            Image.asset(
-              "assets/img1.png",
+            Image.network(
+              data["imageurl"],
               width: 180,
             ),
           ],

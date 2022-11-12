@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../const/poke_type_container..dart';
 import '../const/text_style.dart';
 
-Widget landscapeContainer() {
+Widget landscapeContainer(data) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -11,7 +11,7 @@ Widget landscapeContainer() {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          headingText(color: Colors.white, size: 36, text: "Bulbasaur"),
+          headingText(color: Colors.white, size: 36, text: data["name"]),
           Row(
             children: [
               typeContainer(
@@ -40,8 +40,8 @@ Widget landscapeContainer() {
               width: 200,
               color: Colors.white.withOpacity(0.5),
             ),
-            Image.asset(
-              "assets/img1.png",
+            Image.network(
+              data["imageurl"],
               width: 180,
             ),
           ],
