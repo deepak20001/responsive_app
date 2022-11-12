@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_app/const/poke_type_container..dart';
+import 'package:responsive_app/details_screen.dart';
 import './const/text_style.dart';
 
 void main() {
@@ -49,56 +50,66 @@ class Demo extends StatelessWidget {
                     crossAxisSpacing: 8,
                   ),
                   itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: -20,
-                            right: -20,
-                            child: Image.asset(
-                              "assets/pokeball.png",
-                              width: 150,
-                              color: Colors.white.withOpacity(0.5),
-                            ),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailsScreen(),
                           ),
-                          Positioned(
-                            bottom: 8,
-                            right: 8,
-                            child: Image.asset(
-                              "assets/img1.png",
-                              width: 150,
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: -20,
+                              right: -20,
+                              child: Image.asset(
+                                "assets/pokeball.png",
+                                width: 150,
+                                color: Colors.white.withOpacity(0.5),
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            top: 20,
-                            left: 10,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                headingText(
-                                  color: Colors.white,
-                                  size: 24,
-                                  text: "Bulbasaur",
-                                ),
-                                typeContainer(
-                                  color: Colors.white,
-                                  size: 16,
-                                  text: "Grass",
-                                ),
-                                const SizedBox(height: 6),
-                                typeContainer(
-                                  color: Colors.white,
-                                  size: 16,
-                                  text: "Poison",
-                                ),
-                              ],
+                            Positioned(
+                              bottom: 8,
+                              right: 8,
+                              child: Image.asset(
+                                "assets/img1.png",
+                                width: 150,
+                              ),
                             ),
-                          ),
-                        ],
+                            Positioned(
+                              top: 20,
+                              left: 10,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  headingText(
+                                    color: Colors.white,
+                                    size: 24,
+                                    text: "Bulbasaur",
+                                  ),
+                                  typeContainer(
+                                    color: Colors.white,
+                                    size: 16,
+                                    text: "Grass",
+                                  ),
+                                  const SizedBox(height: 6),
+                                  typeContainer(
+                                    color: Colors.white,
+                                    size: 16,
+                                    text: "Poison",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
